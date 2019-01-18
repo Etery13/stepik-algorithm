@@ -1,16 +1,12 @@
 package greedyAlgorithms.Intro;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class CoverSectionsWithPoints {
-
-    static ArrayList<BigInteger> numberOfPointsInSections(BigInteger[][] sections) {
-        ArrayList<BigInteger> points = new ArrayList<>();
-        return points;
-    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -26,16 +22,26 @@ public class CoverSectionsWithPoints {
                 }
             }
         }
-        System.out.println("Отрезки после ввода: ");
-        Arrays.asList(sections).forEach(System.out::println);
+        //System.out.println("Отрезки после ввода: " + Arrays.deepToString(sections));
         Arrays.sort(sections, (o1, o2) -> {
-            BigInteger finishO1 = o1[1];
-            BigInteger finishO2 = o2[1];
-            return finishO1.compareTo(finishO2);
+            int result = o1[1].compareTo(o2[1]);
+            if (result != 0) {
+                return result;
+            } else {
+                return o1[0].compareTo(o2[0]);
+            }
         });
-        System.out.println("Отрезки после сортировки: ");
-        Arrays.asList(sections).forEach(System.out::println);
-        ArrayList<BigInteger> points = numberOfPointsInSections(sections);
+        //System.out.println("Отрезки после сортировки: " + Arrays.deepToString(sections));
+        Set<BigInteger> points = new HashSet<>();
+        int j = 0;
+        while (j < n) {
+            int k = j;
+            while (k < n - 1 && sections[j][1].compareTo(sections[k + 1][0]) > 0) {
+                k++;
+            }
+            points.add(sections[j][1]);
+            j = k + 1;
+        }
         System.out.println(points.size());
         System.out.println(points);
     }
