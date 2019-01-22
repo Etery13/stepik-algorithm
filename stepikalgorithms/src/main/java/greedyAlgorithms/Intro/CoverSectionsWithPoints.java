@@ -16,10 +16,8 @@ public class CoverSectionsWithPoints {
             for (int i = 0; i < n; i++) {
                 BigInteger start = scanner.nextBigInteger();
                 BigInteger finish = scanner.nextBigInteger();
-                if (start.compareTo(BigInteger.ZERO) > 0 && finish.compareTo(start) > 0) {
-                    sections[i][0] = start;
-                    sections[i][1] = finish;
-                }
+                sections[i][0] = start;
+                sections[i][1] = finish;
             }
         }
         //System.out.println("Отрезки после ввода: " + Arrays.deepToString(sections));
